@@ -12,8 +12,9 @@ Tag.init(
       primaryKey: true,
       autoIncrement: true,
     },
+
     tag_name:{
-      DataTypes:STRING,     
+      type: DataTypes.STRING,     
     }
 
     
@@ -23,7 +24,7 @@ Tag.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Tag',
+    modelName: 'tag',
   }
 );
 

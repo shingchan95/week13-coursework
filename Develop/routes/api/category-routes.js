@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
   });
 
 
-router.get('/:id', (req, res) => {
+router.get('/:id',async (req, res) => {
   try {
     const CategoryData = await Category.findByPk(req.params.id, {
       include: [{ model: Product }],
@@ -34,19 +34,19 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
+router.post('/',async (req, res) => {
   try {
     const CategoryData = await Category.create({
-      reader_id: req.body.reader_id,
+      category_name: req.body.category_name,
     });
-    res.status(200).json(locationData);
+    res.status(200).json(CategoryData);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const CategoryData = await Category.update({
       where: {
@@ -64,9 +64,10 @@ router.put('/:id', (req, res) => {
     res.status(500).json(err);
   }
 });
+
   // update a category by its `id` value
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id',async (req, res) => {
   // delete a category by its `id` value
   try {
     const CategoryData = await Category.destroy({
