@@ -37,7 +37,7 @@ router.get('/:id',async (req, res) => {
 router.post('/',async (req, res) => {
   try {
     const CategoryData = await Category.create({
-      category_name: req.body.category_name,
+      category_name: req.body.category_name
     });
     res.status(200).json(CategoryData);
   } catch (err) {
@@ -48,7 +48,7 @@ router.post('/',async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const CategoryData = await Category.update({
+    const CategoryData = await Category.update(req.body,{
       where: {
         id: req.params.id,
       },
@@ -77,7 +77,7 @@ router.delete('/:id',async (req, res) => {
     });
 
     if (!CategoryData) {
-      res.status(404).json({ message: 'No library card found with that id!' });
+      res.status(404).json({ message: 'No category found with that id!' });
       return;
     }
 
